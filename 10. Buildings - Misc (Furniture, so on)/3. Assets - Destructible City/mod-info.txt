@@ -1,0 +1,4 @@
+[mod]
+title: 3. Assets - Destructible City
+description: \n- Destructuble versions of buildings from pack5.png (Posted by Reik)\n- Destructible bridges based on Mattsimus design\n- Building pack by DEFCON1
+minVersion: 1.15p9

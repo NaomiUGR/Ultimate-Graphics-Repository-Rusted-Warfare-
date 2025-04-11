@@ -1,0 +1,687 @@
+[core]
+@memory EZTX_currentChar: string
+@memory EZTX_string: string
+@memory EZTX_stringLength: float
+@memory EZTX_stringWidth: float[]
+@memory EZTX_stringHeight: float
+@memory EZTX_maxWidth: float
+@memory EZTX_lastSpace: float
+@memory EZTX_fontSize: float
+@memory EZTX_pos: float
+@memory EZTX_char: float[]
+@memory EZTX_width: float[]
+@memory EZTX_firstWidth: float[]
+@memory EZTX_posX: float[]
+@memory EZTX_posY: float[]
+@memory EZTX_offsetX: float
+@memory EZTX_offsetY: float
+@memory EZTX_visible: bool[]
+@memory tempFloat: float[]
+@memory EZTX_horizontal: string
+@memory EZTX_vertical: string
+
+@global EZTX_font_width: 68
+@global EZTX_font_height: 71
+@global EZTX_fontSheet: ROOT:Templates\Easy Text\fontSet\russel\russel.png
+@global EZTX_spaceWidth: 30
+
+[hiddenAction_EZTX_newString]
+autoTriggerOnEvent: newMessage(withTag="newString")
+setUnitMemory: """
+EZTX_string=upperCase(eventData(name="string",type="string",default="")), 
+EZTX_stringLength=length(memory.EZTX_string), 
+EZTX_fontSize=eventData(name="fontSize",type="float",default=memory.EZTX_fontSize),
+EZTX_maxWidth=eventData(name="maxWidth",type="float",default=memory.EZTX_maxWidth),
+EZTX_horizontal=lowercase(eventData(name="horizontal",type="string",default=memory.EZTX_horizontal)),
+EZTX_vertical=lowercase(eventData(name="vertical",type="string",default=memory.EZTX_vertical)),
+EZTX_offsetX=eventData(name="offsetX",type="float",default=memory.EZTX_offsetX),
+EZTX_offsetY=eventData(name="offsetY",type="float",default=memory.EZTX_offsetY),
+EZTX_visible=null,
+EZTX_char=null,
+EZTX_posX=null,
+EZTX_posY=null,
+EZTX_stringWidth=null,
+EZTX_stringHeight=0,
+EZTX_pos=0
+"""
+switchToTeam: eventData(name="color",type="float",default=self.teamId)
+alsoTriggerAction: EZTX_secondCheck, EZTX_adjustment
+
+[hiddenAction_EZTX_secondCheck]
+alsoTriggerAction: EZTX_CalcString
+alsoTriggerActionRepeat: min(${EZTX_maxChar},memory.EZTX_stringLength)
+
+[hiddenAction_EZTX_adjustment]
+alsoTriggerAction: EZTX_lastPassLeft, EZTX_lastPassRight, EZTX_lastPassCentered, EZTX_lastPassTop, EZTX_lastPassBottom, EZTX_lastPassMiddle
+addResources: setFlag=0, setFlag=1
+
+[hiddenAction_EZTX_lastPassLeft]
+requireConditional: if memory.EZTX_horizontal == "left"
+addResources: unsetFlag=0
+alsoTriggerAction: EZTX_moveChars_left
+alsoTriggerActionRepeat: memory.EZTX_char.length
+
+[hiddenAction_EZTX_lastPassRight]
+requireConditional: if memory.EZTX_horizontal == "right"
+addResources: unsetFlag=0
+alsoTriggerAction: EZTX_moveChars_right
+alsoTriggerActionRepeat: memory.EZTX_char.length
+
+[hiddenAction_EZTX_lastPassCentered]
+requireConditional: if self.hasFlag(id=0)
+alsoTriggerAction: EZTX_moveChars_centered
+alsoTriggerActionRepeat: memory.EZTX_char.length
+
+[hiddenAction_EZTX_moveChars_left]
+setUnitMemory: """
+EZTX_posX[index]=(memory.EZTX_posX[index])+memory.EZTX_offsetX
+"""
+
+[hiddenAction_EZTX_moveChars_right]
+setUnitMemory: """
+EZTX_posX[index]=(memory.EZTX_posX[index]-(memory.EZTX_stringWidth[memory.EZTX_posY[index]]))+memory.EZTX_offsetX
+"""
+
+[hiddenAction_EZTX_moveChars_centered]
+setUnitMemory: """
+EZTX_posX[index]=(memory.EZTX_posX[index]-(memory.EZTX_stringWidth[memory.EZTX_posY[index]]/2))+memory.EZTX_offsetX
+"""
+################################
+
+[hiddenAction_EZTX_lastPassTop]
+requireConditional: if memory.EZTX_vertical == "top"
+addResources: unsetFlag=1
+alsoTriggerAction: EZTX_moveChars_top
+alsoTriggerActionRepeat: memory.EZTX_char.length
+
+[hiddenAction_EZTX_lastPassBottom]
+requireConditional: if memory.EZTX_vertical == "bottom"
+addResources: unsetFlag=1
+alsoTriggerAction: EZTX_moveChars_bottom
+alsoTriggerActionRepeat: memory.EZTX_char.length
+
+[hiddenAction_EZTX_lastPassMiddle]
+requireConditional: if self.hasFlag(id=1)
+alsoTriggerAction: EZTX_moveChars_middle
+alsoTriggerActionRepeat: memory.EZTX_char.length
+
+[hiddenAction_EZTX_moveChars_top]
+setUnitMemory: """
+EZTX_posY[index]=(memory.EZTX_posY[index]*${EZTX_font_height}*memory.EZTX_fontSize)+(${EZTX_font_height/2}*memory.EZTX_fontSize)+memory.EZTX_offsetY
+"""
+
+[hiddenAction_EZTX_moveChars_bottom]
+setUnitMemory: """
+EZTX_posY[index]=-(memory.EZTX_posY[index]*${EZTX_font_height}*memory.EZTX_fontSize)-(${EZTX_font_height/2}*memory.EZTX_fontSize)+memory.EZTX_offsetY
+"""
+
+[hiddenAction_EZTX_moveChars_middle]
+setUnitMemory: """
+EZTX_posY[index]=((memory.EZTX_posY[index]-memory.EZTX_stringWidth.length/2)*${EZTX_font_height}*memory.EZTX_fontSize)+(${EZTX_font_height/2}*memory.EZTX_fontSize)+memory.EZTX_offsetY
+"""
+
+###########################################################################
+#This will go into the individual text ".copyFrom"s when I have them done.#
+###########################################################################
+[hiddenAction_EZTX_CalcString]
+setUnitMemory: """
+EZTX_currentChar=substring(memory.EZTX_string,index,index+1)
+"""
+alsoTriggerAction: EZTX_newline,EZTX_0,EZTX_1,EZTX_2,EZTX_3,EZTX_4,EZTX_5,EZTX_6,EZTX_7,EZTX_8,EZTX_9,EZTX_A,EZTX_B,EZTX_C,EZTX_D,EZTX_E,EZTX_F,EZTX_G,EZTX_H,EZTX_I,EZTX_J,EZTX_K,EZTX_L,EZTX_M,EZTX_N,EZTX_O,EZTX_P,EZTX_Q,EZTX_R,EZTX_S,EZTX_T,EZTX_U,EZTX_V,EZTX_W,EZTX_X,EZTX_Y,EZTX_Z,EZTX_Æ,EZTX_Ø,EZTX_Å,EZTX_comma,EZTX_period,EZTX_dash,EZTX_underscore,EZTX_apostrophe,EZTX_quote,EZTX_exclamation,EZTX_question,EZTX_percent,EZTX_ampersand,EZTX_parenthesisStart,EZTX_parenthesisEnd,EZTX_slash,EZTX_backslash,EZTX_equal,EZTX_lessThan,EZTX_greaterThan,EZTX_dollar,EZTX_asterisk,EZTX_plus,EZTX_semicolon,EZTX_colon,EZTX_squareBracketStart,EZTX_squareBracketEnd,EZTX_at,EZTX_curlyBracketStart,EZTX_curlyBracketEnd,EZTX_Б,EZTX_В,EZTX_Г,EZTX_Д,EZTX_Ж,EZTX_З,EZTX_К,EZTX_Л,EZTX_М,EZTX_Н,EZTX_П,EZTX_Р,EZTX_С,EZTX_Т,EZTX_Ф,EZTX_Х,EZTX_Ц,EZTX_Ч,EZTX_Ш,EZTX_Щ,EZTX_А,EZTX_Е,EZTX_Ё,EZTX_И,EZTX_О,EZTX_У,EZTX_Ы,EZTX_Э,EZTX_Ю,EZTX_Я,EZTX_Й,EZTX_Ь,EZTX_Ъ,EZTX_space, EZTX_unknownCharacter
+
+addResources: setFlag=0
+
+
+############################################
+
+[template_EZTX_chooseChar]
+requireConditional: if memory.EZTX_currentChar == ${char}
+setUnitMemory: """
+	EZTX_posX[memory.EZTX_pos]=memory.EZTX_stringWidth[memory.EZTX_stringHeight]+(${(width+EZTX_spacing)/2}*memory.EZTX_fontSize),
+	EZTX_posY[memory.EZTX_pos]=memory.EZTX_stringHeight,
+	EZTX_char[memory.EZTX_pos]=${Nr},
+	EZTX_visible[memory.EZTX_pos]=true,
+	EZTX_stringWidth[memory.EZTX_stringHeight]=memory.EZTX_stringWidth[memory.EZTX_stringHeight]+(${width+EZTX_spacing}*memory.EZTX_fontSize),
+	EZTX_width[memory.EZTX_pos]=${width+EZTX_spacing}*memory.EZTX_fontSize,
+	EZTX_pos=memory.EZTX_pos+1
+"""
+addResources: unsetFlag=0
+alsoTriggerAction: EZTX_wordWrap
+alsoTriggerOrQueueActionConditional: if (memory.EZTX_stringWidth[memory.EZTX_stringHeight] > memory.EZTX_maxWidth)
+
+[hiddenAction_EZTX_wordWrap]
+alsoTriggerAction: EZTX_wordWrapMove
+alsoTriggerActionRepeat: memory.EZTX_pos-memory.EZTX_lastSpace
+setUnitMemory: """
+	EZTX_firstWidth[memory.EZTX_stringHeight]=memory.EZTX_pos,
+	EZTX_stringWidth[memory.EZTX_stringHeight]=memory.EZTX_stringWidth[memory.EZTX_stringHeight]-(${EZTX_spaceWidth}*memory.EZTX_fontSize),
+	EZTX_stringHeight=memory.EZTX_stringHeight+1
+"""
+
+[hiddenAction_EZTX_wordWrapMove]
+isVisible: false
+@define y: (memory.EZTX_stringHeight-1)
+@define i: (index+memory.EZTX_lastSpace)
+setUnitMemory: """
+EZTX_stringWidth[${y}]=memory.EZTX_stringWidth[${y}]-memory.EZTX_width[${i}],
+EZTX_posY[${i}]=memory.EZTX_stringHeight,
+EZTX_posX[${i}]=memory.EZTX_stringWidth[memory.EZTX_stringHeight]+memory.EZTX_width[${i}]/2,
+EZTX_stringWidth[memory.EZTX_stringHeight]=memory.EZTX_stringWidth[memory.EZTX_stringHeight]+memory.EZTX_width[${i}]
+"""
+
+[hiddenAction_EZTX_newline]
+@copyFromSection: template_EZTX_chooseChar
+setUnitMemory: EZTX_firstWidth[memory.EZTX_stringHeight]=memory.EZTX_pos, EZTX_stringHeight=memory.EZTX_stringHeight+1
+@define Nr: -1
+@define char: "#"
+
+[hiddenAction_EZTX_unknownCharacter]
+requireConditional: if (self.hasFlag(id=0))
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 99
+@define width: 51
+
+[hiddenAction_EZTX_space]
+@copyFromSection: template_EZTX_chooseChar
+setUnitMemory: EZTX_stringWidth[memory.EZTX_stringHeight]=memory.EZTX_stringWidth[memory.EZTX_stringHeight]+${EZTX_spaceWidth}*memory.EZTX_fontSize, EZTX_lastSpace=memory.EZTX_pos
+@define Nr: -1
+@define char: " "
+
+
+[hiddenAction_EZTX_0]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 00
+@define char: "0"
+@define width: 32
+[hiddenAction_EZTX_1]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 01
+@define char: "1"
+@define width: 14
+[hiddenAction_EZTX_2]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 02
+@define char: "2"
+@define width: 33
+[hiddenAction_EZTX_3]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 03
+@define char: "3"
+@define width: 32
+[hiddenAction_EZTX_4]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 04
+@define char: "4"
+@define width: 31
+[hiddenAction_EZTX_5]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 05
+@define char: "5"
+@define width: 33
+[hiddenAction_EZTX_6]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 06
+@define char: "6"
+@define width: 34
+[hiddenAction_EZTX_7]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 07
+@define char: "7"
+@define width: 33
+[hiddenAction_EZTX_8]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 08
+@define char: "8"
+@define width: 32
+[hiddenAction_EZTX_9]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 09
+@define char: "9"
+@define width: 32
+[hiddenAction_EZTX_A]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 10
+@define char: "A"
+@define width: 34
+[hiddenAction_EZTX_B]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 11
+@define char: "B"
+@define width: 35
+[hiddenAction_EZTX_C]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 12
+@define char: "C"
+@define width: 36
+[hiddenAction_EZTX_D]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 13
+@define char: "D"
+@define width: 35
+[hiddenAction_EZTX_E]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 14
+@define char: "E"
+@define width: 32
+[hiddenAction_EZTX_F]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 15
+@define char: "F"
+@define width: 33
+[hiddenAction_EZTX_G]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 16
+@define char: "G"
+@define width: 36
+[hiddenAction_EZTX_H]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 17
+@define char: "H"
+@define width: 31
+[hiddenAction_EZTX_I]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 18
+@define char: "I"
+@define width: 7
+[hiddenAction_EZTX_J]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 19
+@define char: "J"
+@define width: 30
+[hiddenAction_EZTX_K]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 20
+@define char: "K"
+@define width: 35
+[hiddenAction_EZTX_L]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 21
+@define char: "L"
+@define width: 27
+[hiddenAction_EZTX_M]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 22
+@define char: "M"
+@define width: 45
+[hiddenAction_EZTX_N]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 23
+@define char: "N"
+@define width: 34
+[hiddenAction_EZTX_O]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 24
+@define char: "O"
+@define width: 36
+[hiddenAction_EZTX_P]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 25
+@define char: "P"
+@define width: 33
+[hiddenAction_EZTX_Q]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 26
+@define char: "Q"
+@define width: 38
+[hiddenAction_EZTX_R]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 27
+@define char: "R"
+@define width: 35
+[hiddenAction_EZTX_S]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 28
+@define char: "S"
+@define width: 43
+[hiddenAction_EZTX_T]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 29
+@define char: "T"
+@define width: 40
+[hiddenAction_EZTX_U]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 30
+@define char: "U"
+@define width: 40
+[hiddenAction_EZTX_V]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 31
+@define char: "V"
+@define width: 37
+[hiddenAction_EZTX_W]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 32
+@define char: "W"
+@define width: 55
+[hiddenAction_EZTX_X]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 33
+@define char: "X"
+@define width: 38
+[hiddenAction_EZTX_Y]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 34
+@define char: "Y"
+@define width: 38
+[hiddenAction_EZTX_Z]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 35
+@define char: "Z"
+@define width: 45
+[hiddenAction_EZTX_Æ]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 36
+@define char: "Æ"
+@define width: 58
+[hiddenAction_EZTX_Ø]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 37
+@define char: "Ø"
+@define width: 36
+[hiddenAction_EZTX_Å]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 38
+@define char: "Å"
+@define width: 34
+[hiddenAction_EZTX_comma]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 39
+@define char: ","
+@define width: 5
+[hiddenAction_EZTX_period]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 40
+@define char: "."
+@define width: 5
+[hiddenAction_EZTX_dash]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 41
+@define char: "-"
+@define width: 14
+[hiddenAction_EZTX_underscore]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 42
+@define char: "_"
+@define width: 30
+[hiddenAction_EZTX_apostrophe]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 43
+@define char: "'"
+@define width: 5
+[hiddenAction_EZTX_quote]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 44
+@define char: "\""
+@define width: 14
+[hiddenAction_EZTX_exclamation]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 45
+@define char: "!"
+@define width: 7
+[hiddenAction_EZTX_question]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 46
+@define char: "?"
+@define width: 32
+[hiddenAction_EZTX_percent]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 47
+@define char: "%"
+@define width: 43
+[hiddenAction_EZTX_ampersand]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 48
+@define char: "&"
+@define width: 40
+[hiddenAction_EZTX_parenthesisStart]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 49
+@define char: "("
+# Need to fix later
+@define width: 8
+[hiddenAction_EZTX_parenthesisEnd]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 50
+@define char: ")"
+# Need to fix later
+@define width: 8
+[hiddenAction_EZTX_slash]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 51
+@define char: "/"
+@define width: 19
+[hiddenAction_EZTX_backslash]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 52
+@define char: "\\"
+@define width: 19
+[hiddenAction_EZTX_equal]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 53
+@define char: "="
+@define width: 33
+[hiddenAction_EZTX_lessThan]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 54
+@define char: "<"
+@define width: 33
+[hiddenAction_EZTX_greaterThan]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 55
+@define char: ">"
+@define width: 33
+[hiddenAction_EZTX_dollar]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 56
+@define char: "$"
+@define width: 35
+[hiddenAction_EZTX_asterisk]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 57
+@define char: "*"
+@define width: 22
+[hiddenAction_EZTX_plus]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 58
+@define char: "+"
+@define width: 33
+[hiddenAction_EZTX_semicolon]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 59
+@define char: ";"
+@define width: 5
+[hiddenAction_EZTX_colon]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 60
+@define char: ":"
+@define width: 5
+[hiddenAction_EZTX_squareBracketStart]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 61
+@define char: "["
+@define width: 16
+[hiddenAction_EZTX_squareBracketEnd]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 62
+@define char: "]"
+@define width: 16
+[hiddenAction_EZTX_at]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 63
+@define char: "@"
+@define width: 44
+[hiddenAction_EZTX_curlyBracketStart]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 64
+@define char: "{"
+@define width: 12
+[hiddenAction_EZTX_curlyBracketEnd]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 65
+@define char: "}"
+@define width: 12
+[hiddenAction_EZTX_Б]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 66
+@define char: "Б"
+@define width: 33
+[hiddenAction_EZTX_В]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 67
+@define char: "В"
+@define width: 33
+[hiddenAction_EZTX_Г]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 68
+@define char: "Г"
+@define width: 29
+[hiddenAction_EZTX_Д]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 69
+@define char: "Д"
+@define width: 44
+[hiddenAction_EZTX_Ж]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 70
+@define char: "Ж"
+@define width: 66
+[hiddenAction_EZTX_З]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 71
+@define char: "З"
+@define width: 33
+[hiddenAction_EZTX_К]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 72
+@define char: "К"
+@define width: 38
+[hiddenAction_EZTX_Л]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 73
+@define char: "Л"
+@define width: 39
+[hiddenAction_EZTX_М]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 74
+@define char: "М"
+@define width: 43
+[hiddenAction_EZTX_Н]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 75
+@define char: "Н"
+@define width: 36
+[hiddenAction_EZTX_П]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 76
+@define char: "П"
+@define width: 36
+[hiddenAction_EZTX_Р]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 77
+@define char: "Р"
+@define width: 30
+[hiddenAction_EZTX_С]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 78
+@define char: "С"
+@define width: 38
+[hiddenAction_EZTX_Т]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 79
+@define char: "Т"
+@define width: 40
+[hiddenAction_EZTX_Ф]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 80
+@define char: "Ф"
+@define width: 48
+[hiddenAction_EZTX_Х]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 81
+@define char: "Х"
+@define width: 40
+[hiddenAction_EZTX_Ц]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 82
+@define char: "Ц"
+@define width: 41
+[hiddenAction_EZTX_Ч]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 83
+@define char: "Ч"
+@define width: 32
+[hiddenAction_EZTX_Ш]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 84
+@define char: "Ш"
+@define width: 56
+[hiddenAction_EZTX_Щ]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 85
+@define char: "Щ"
+@define width: 61
+[hiddenAction_EZTX_А]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 86
+@define char: "А"
+@define width: 43
+[hiddenAction_EZTX_Е]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 87
+@define char: "Е"
+@define width: 30
+[hiddenAction_EZTX_Ё]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 88
+@define char: "Ё"
+@define width: 33
+[hiddenAction_EZTX_И]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 89
+@define char: "И"
+@define width: 40
+[hiddenAction_EZTX_О]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 90
+@define char: "О"
+@define width: 43
+[hiddenAction_EZTX_У]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 91
+@define char: "У"
+@define width: 44
+[hiddenAction_EZTX_Ы]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 92
+@define char: "Ы"
+@define width: 41
+[hiddenAction_EZTX_Э]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 93
+@define char: "Э"
+@define width: 38
+[hiddenAction_EZTX_Ю]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 94
+@define char: "Ю"
+@define width: 59
+[hiddenAction_EZTX_Я]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 95
+@define char: "Я"
+@define width: 34
+[hiddenAction_EZTX_Й]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 96
+@define char: "Й"
+@define width: 35
+[hiddenAction_EZTX_Ь]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 97
+@define char: "Ь"
+@define width: 33
+[hiddenAction_EZTX_Ъ]
+@copyFromSection: template_EZTX_chooseChar
+@define Nr: 98
+@define char: "Ъ"
+@define width: 47

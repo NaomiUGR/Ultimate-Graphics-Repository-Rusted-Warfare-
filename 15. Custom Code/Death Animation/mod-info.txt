@@ -1,0 +1,3 @@
+[mod]
+title: Death Animation Example
+minVersion: 1.15p9

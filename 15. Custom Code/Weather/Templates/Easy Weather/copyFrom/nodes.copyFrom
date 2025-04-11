@@ -1,0 +1,45 @@
+[core]
+mass: 0
+price: 0
+maxHp: 0
+radius: 0
+isBuilding: true
+showOnMinimap: false
+isUnselectable: true
+canNotBeDirectlyAttacked: true
+disableDeathOnZeroHp: true
+disableAllUnitCollisions: true
+showInEditor: false
+ignoreInUnitCapCalculation: true
+fogOfWarSightRange: 0
+footprint: 0,0,-1,-1
+stayNeutral: true
+@memory EZWE_Controller: unit
+@memory EZWE_Seed: float
+
+autoTriggerCheckRate: every8Frames
+
+[hiddenAction_EZWE_Created]
+autoTriggerOnEvent: completeAndActive
+setUnitMemory: EZWE_Controller=customTarget1, EZWE_Seed=int(rnd(0,13147))
+
+[graphics]
+drawLayer: top
+image: SHARED:blank.png
+disableLowHpFire: true
+disableLowHpSmoke: true
+showTransportBar: false
+showHealthBar: false
+showEnergyBar: false
+showShieldBar: false
+showQueueBar: false
+showShotDelayBar: false
+showSelectionIndicator: false
+
+[attack]
+canAttack: false
+
+[movement]
+movementType: air
+targetHeight: 0
+targetHeightDrift: 0

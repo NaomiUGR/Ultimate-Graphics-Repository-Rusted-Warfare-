@@ -1,0 +1,317 @@
+[core]
+copyFrom: ROOT:Templates\Easy Text\ignore\baseCalc.ignore
+@global EZTX_maxChar: 100
+
+[template_EZTX_decal]
+layer: beforeUI
+xOffsetAbsolute: memory.EZTX_posX[${Nr}]
+yOffsetAbsolute: memory.EZTX_posY[${Nr}]
+isVisible: if memory.EZTX_visible[${Nr}]
+frame: memory.EZTX_char[${Nr}]
+image: ${EZTX_fontSheet}
+alwaysStartDirAtZero: true
+teamColors: true
+frame_width: ${EZTX_font_width}
+frame_height: ${EZTX_font_height}
+imageScale: memory.EZTX_fontSize
+
+[decal_000]
+@copyFromSection: template_EZTX_decal
+@define Nr: 000
+[decal_001]
+@copyFromSection: template_EZTX_decal
+@define Nr: 001
+[decal_002]
+@copyFromSection: template_EZTX_decal
+@define Nr: 002
+[decal_003]
+@copyFromSection: template_EZTX_decal
+@define Nr: 003
+[decal_004]
+@copyFromSection: template_EZTX_decal
+@define Nr: 004
+[decal_005]
+@copyFromSection: template_EZTX_decal
+@define Nr: 005
+[decal_006]
+@copyFromSection: template_EZTX_decal
+@define Nr: 006
+[decal_007]
+@copyFromSection: template_EZTX_decal
+@define Nr: 007
+[decal_008]
+@copyFromSection: template_EZTX_decal
+@define Nr: 008
+[decal_009]
+@copyFromSection: template_EZTX_decal
+@define Nr: 009
+[decal_010]
+@copyFromSection: template_EZTX_decal
+@define Nr: 010
+[decal_011]
+@copyFromSection: template_EZTX_decal
+@define Nr: 011
+[decal_012]
+@copyFromSection: template_EZTX_decal
+@define Nr: 012
+[decal_013]
+@copyFromSection: template_EZTX_decal
+@define Nr: 013
+[decal_014]
+@copyFromSection: template_EZTX_decal
+@define Nr: 014
+[decal_015]
+@copyFromSection: template_EZTX_decal
+@define Nr: 015
+[decal_016]
+@copyFromSection: template_EZTX_decal
+@define Nr: 016
+[decal_017]
+@copyFromSection: template_EZTX_decal
+@define Nr: 017
+[decal_018]
+@copyFromSection: template_EZTX_decal
+@define Nr: 018
+[decal_019]
+@copyFromSection: template_EZTX_decal
+@define Nr: 019
+[decal_020]
+@copyFromSection: template_EZTX_decal
+@define Nr: 020
+[decal_021]
+@copyFromSection: template_EZTX_decal
+@define Nr: 021
+[decal_022]
+@copyFromSection: template_EZTX_decal
+@define Nr: 022
+[decal_023]
+@copyFromSection: template_EZTX_decal
+@define Nr: 023
+[decal_024]
+@copyFromSection: template_EZTX_decal
+@define Nr: 024
+[decal_025]
+@copyFromSection: template_EZTX_decal
+@define Nr: 025
+[decal_026]
+@copyFromSection: template_EZTX_decal
+@define Nr: 026
+[decal_027]
+@copyFromSection: template_EZTX_decal
+@define Nr: 027
+[decal_028]
+@copyFromSection: template_EZTX_decal
+@define Nr: 028
+[decal_029]
+@copyFromSection: template_EZTX_decal
+@define Nr: 029
+[decal_030]
+@copyFromSection: template_EZTX_decal
+@define Nr: 030
+[decal_031]
+@copyFromSection: template_EZTX_decal
+@define Nr: 031
+[decal_032]
+@copyFromSection: template_EZTX_decal
+@define Nr: 032
+[decal_033]
+@copyFromSection: template_EZTX_decal
+@define Nr: 033
+[decal_034]
+@copyFromSection: template_EZTX_decal
+@define Nr: 034
+[decal_035]
+@copyFromSection: template_EZTX_decal
+@define Nr: 035
+[decal_036]
+@copyFromSection: template_EZTX_decal
+@define Nr: 036
+[decal_037]
+@copyFromSection: template_EZTX_decal
+@define Nr: 037
+[decal_038]
+@copyFromSection: template_EZTX_decal
+@define Nr: 038
+[decal_039]
+@copyFromSection: template_EZTX_decal
+@define Nr: 039
+[decal_040]
+@copyFromSection: template_EZTX_decal
+@define Nr: 040
+[decal_041]
+@copyFromSection: template_EZTX_decal
+@define Nr: 041
+[decal_042]
+@copyFromSection: template_EZTX_decal
+@define Nr: 042
+[decal_043]
+@copyFromSection: template_EZTX_decal
+@define Nr: 043
+[decal_044]
+@copyFromSection: template_EZTX_decal
+@define Nr: 044
+[decal_045]
+@copyFromSection: template_EZTX_decal
+@define Nr: 045
+[decal_046]
+@copyFromSection: template_EZTX_decal
+@define Nr: 046
+[decal_047]
+@copyFromSection: template_EZTX_decal
+@define Nr: 047
+[decal_048]
+@copyFromSection: template_EZTX_decal
+@define Nr: 048
+[decal_049]
+@copyFromSection: template_EZTX_decal
+@define Nr: 049
+[decal_050]
+@copyFromSection: template_EZTX_decal
+@define Nr: 050
+[decal_051]
+@copyFromSection: template_EZTX_decal
+@define Nr: 051
+[decal_052]
+@copyFromSection: template_EZTX_decal
+@define Nr: 052
+[decal_053]
+@copyFromSection: template_EZTX_decal
+@define Nr: 053
+[decal_054]
+@copyFromSection: template_EZTX_decal
+@define Nr: 054
+[decal_055]
+@copyFromSection: template_EZTX_decal
+@define Nr: 055
+[decal_056]
+@copyFromSection: template_EZTX_decal
+@define Nr: 056
+[decal_057]
+@copyFromSection: template_EZTX_decal
+@define Nr: 057
+[decal_058]
+@copyFromSection: template_EZTX_decal
+@define Nr: 058
+[decal_059]
+@copyFromSection: template_EZTX_decal
+@define Nr: 059
+[decal_060]
+@copyFromSection: template_EZTX_decal
+@define Nr: 060
+[decal_061]
+@copyFromSection: template_EZTX_decal
+@define Nr: 061
+[decal_062]
+@copyFromSection: template_EZTX_decal
+@define Nr: 062
+[decal_063]
+@copyFromSection: template_EZTX_decal
+@define Nr: 063
+[decal_064]
+@copyFromSection: template_EZTX_decal
+@define Nr: 064
+[decal_065]
+@copyFromSection: template_EZTX_decal
+@define Nr: 065
+[decal_066]
+@copyFromSection: template_EZTX_decal
+@define Nr: 066
+[decal_067]
+@copyFromSection: template_EZTX_decal
+@define Nr: 067
+[decal_068]
+@copyFromSection: template_EZTX_decal
+@define Nr: 068
+[decal_069]
+@copyFromSection: template_EZTX_decal
+@define Nr: 069
+[decal_070]
+@copyFromSection: template_EZTX_decal
+@define Nr: 070
+[decal_071]
+@copyFromSection: template_EZTX_decal
+@define Nr: 071
+[decal_072]
+@copyFromSection: template_EZTX_decal
+@define Nr: 072
+[decal_073]
+@copyFromSection: template_EZTX_decal
+@define Nr: 073
+[decal_074]
+@copyFromSection: template_EZTX_decal
+@define Nr: 074
+[decal_075]
+@copyFromSection: template_EZTX_decal
+@define Nr: 075
+[decal_076]
+@copyFromSection: template_EZTX_decal
+@define Nr: 076
+[decal_077]
+@copyFromSection: template_EZTX_decal
+@define Nr: 077
+[decal_078]
+@copyFromSection: template_EZTX_decal
+@define Nr: 078
+[decal_079]
+@copyFromSection: template_EZTX_decal
+@define Nr: 079
+[decal_080]
+@copyFromSection: template_EZTX_decal
+@define Nr: 080
+[decal_081]
+@copyFromSection: template_EZTX_decal
+@define Nr: 081
+[decal_082]
+@copyFromSection: template_EZTX_decal
+@define Nr: 082
+[decal_083]
+@copyFromSection: template_EZTX_decal
+@define Nr: 083
+[decal_084]
+@copyFromSection: template_EZTX_decal
+@define Nr: 084
+[decal_085]
+@copyFromSection: template_EZTX_decal
+@define Nr: 085
+[decal_086]
+@copyFromSection: template_EZTX_decal
+@define Nr: 086
+[decal_087]
+@copyFromSection: template_EZTX_decal
+@define Nr: 087
+[decal_088]
+@copyFromSection: template_EZTX_decal
+@define Nr: 088
+[decal_089]
+@copyFromSection: template_EZTX_decal
+@define Nr: 089
+[decal_090]
+@copyFromSection: template_EZTX_decal
+@define Nr: 090
+[decal_091]
+@copyFromSection: template_EZTX_decal
+@define Nr: 091
+[decal_092]
+@copyFromSection: template_EZTX_decal
+@define Nr: 092
+[decal_093]
+@copyFromSection: template_EZTX_decal
+@define Nr: 093
+[decal_094]
+@copyFromSection: template_EZTX_decal
+@define Nr: 094
+[decal_095]
+@copyFromSection: template_EZTX_decal
+@define Nr: 095
+[decal_096]
+@copyFromSection: template_EZTX_decal
+@define Nr: 096
+[decal_097]
+@copyFromSection: template_EZTX_decal
+@define Nr: 097
+[decal_098]
+@copyFromSection: template_EZTX_decal
+@define Nr: 098
+[decal_099]
+@copyFromSection: template_EZTX_decal
+@define Nr: 099

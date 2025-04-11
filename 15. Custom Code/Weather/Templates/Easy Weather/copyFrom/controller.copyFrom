@@ -1,0 +1,92 @@
+[core]
+@memory EZWE_index2: float
+@memory EZWE_WeatherShift: float[]
+@memory EZWE_AvailableWeathers: float[]
+@memory EZWE_CurrentWeather: float
+@memory EZWE_OldWeather: float
+
+autoTriggerCheckRate: every8Frames
+
+[hiddenAction_EZWE_created]
+autoTriggerOnEvent: completeAndActive
+alsoTriggerAction: EZWE_X
+alsoTriggerActionRepeat: int(game.mapWidth()/${EZWE_SpreadX}+0.5)
+teleportTo: createMarker(0,0)
+
+[hiddenAction_EZWE_InitWeather]
+autoTriggerOnEvent: completeAndActive
+setUnitMemory: EZWE_WeatherShift[0]=rnd(${EZWE_WeatherShiftMinimum},${EZWE_WeatherShiftMaximum-EZWE_WeatherShiftMinimum})
+alsoTriggerAction: EZWE_InitWeatherA
+alsoTriggerActionRepeat: ${EZWE_AmountOfWeathers-1}
+
+[hiddenAction_EZWE_InitWeatherA]
+setUnitMemory: EZWE_AvailableWeathers[index]=index+1
+
+[hiddenAction_EZWE_switchWeather]
+autoTrigger: if self.timeAlive >= memory.EZWE_WeatherShift[0]
+setUnitMemory: """
+EZWE_WeatherShift[1]=self.timeAlive,
+EZWE_WeatherShift[0]=self.timeAlive+rnd(${EZWE_WeatherShiftMinimum},${EZWE_WeatherShiftMaximum-EZWE_WeatherShiftMinimum}),
+EZWE_OldWeather=memory.EZWE_CurrentWeather
+"""
+setResourcesWithLogic: ammo=int(rnd(0,memory.EZWE_AvailableWeathers.size))
+alsoTriggerAction: EZWE_switchWeatherA
+
+[hiddenAction_EZWE_switchWeatherA]
+setUnitMemory: EZWE_CurrentWeather=memory.EZWE_AvailableWeathers[self.ammo], EZWE_AvailableWeathers[self.ammo]=memory.EZWE_OldWeather
+debugMessage: %{memory.EZWE_CurrentWeather} and %{memory.EZWE_AvailableWeathers}
+
+[hiddenAction_EZWE_X]
+setUnitMemory: EZWE_index2=index
+alsoTriggerAction: EZWE_Y
+alsoTriggerActionRepeat: int(game.mapHeight()/${EZWE_SpreadY}+0.5)
+
+[hiddenAction_EZWE_Y]
+alsoTriggerAction: spawn
+teleportTo: createMarker(x=min(game.mapWidth-1,(memory.EZWE_index2+.5)*${EZWE_SpreadX}+1),y=min(game.mapHeight-1,(index+.5)*${EZWE_SpreadY}+1))
+
+[hiddenAction_spawn]
+spawnUnits: ${EZWE_NodeUnit}
+
+[hiddenAction_EZWE_Return]
+autoTriggerOnEvent: completeAndActive
+teleportTo: createMarker(x=10,y=10)
+
+[core]
+mass: 0
+price: 0
+maxHp: 0
+radius: 0
+isBuilding: true
+showOnMinimap: false
+#isUnselectable: true
+canNotBeDirectlyAttacked: true
+disableDeathOnZeroHp: true
+disableAllUnitCollisions: true
+showInEditor: false
+ignoreInUnitCapCalculation: true
+fogOfWarSightRange: 0
+footprint: 0,0,-1,-1
+onNewMapSpawn: mapCenter_asNeutral
+stayNeutral: true
+
+[graphics]
+image: SHARED:blank.png
+disableLowHpFire: true
+disableLowHpSmoke: true
+showTransportBar: false
+showHealthBar: false
+showEnergyBar: false
+showShieldBar: false
+showQueueBar: false
+showShotDelayBar: false
+showSelectionIndicator: false
+isVisible: false
+
+[attack]
+canAttack: false
+
+[movement]
+movementType: air
+targetHeight: 0
+targetHeightDrift: 0

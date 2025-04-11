@@ -1,0 +1,46 @@
+[core]
+class: CustomUnitMetadata
+price: 0
+maxHp: 2000
+selfRegenRate: 0.01
+armour: 5
+mass: 9000
+disableDeathOnZeroHp: true
+
+#footprint used for collisions with units (left, up, right, down)
+footprint: -1,-1,1,1
+
+#used for placement, and placement of other buildings
+constructionFootprint: -1,-1,1,1
+
+radius: 10
+#displayRadius: 25
+isBio: false
+isBuilding: true
+isUnselectable: true
+canNotBeDirectlyAttacked: true
+createOnAggressiveTeam: true
+
+[hiddenAction_damaged]
+autoTriggerOnEvent: created
+addResources: hp=-2000
+
+[ai]
+notPassivelyTargetedByOtherUnits: true
+
+[graphics]
+
+#AUTO
+image_shadow: AUTO
+shadowOffsetX: 2
+shadowOffsetY: 2
+showHealthBar: false
+
+
+[attack]
+canAttack: false
+
+[movement]
+movementType: LAND
+moveSpeed: 0
+maxTurnSpeed: 0

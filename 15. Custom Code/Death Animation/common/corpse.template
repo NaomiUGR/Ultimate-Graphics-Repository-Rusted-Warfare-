@@ -1,0 +1,54 @@
+[core]
+mass: 1
+price: 0
+maxHp: 100
+armour: 99999
+armourMinDamageToKeep: 0
+radius: 10
+tags: corpse
+canNotBeDirectlyAttacked: true
+energyMax: ${total_frames-0.1}
+energyRegen: ${animSpeed}
+energyStartingPercentage: 0
+
+transportSlotsNeeded: 9999
+
+hideScorchMark: true
+explodeOnDeath: false
+numBitsOnDeath: 0
+disableAllUnitCollisions: true
+isUnrepairableUnit: true
+isUnselectable: true
+isBuilding: true
+
+[graphics]
+image: SHARED:blank.png
+showEnergyBar: false
+disableLowHpFire: true
+disableLowHpSmoke: true
+
+[decal_deathAnimation]
+@copyFromSection: template_deathAnimation
+frame: int(self.energy())
+layer: shadow
+teamColors: true
+onlyWhileAlive: true
+
+[attack]
+canAttack: false
+canAttackFlyingUnits: false
+canAttackLandUnits: false
+canAttackUnderwaterUnits: false
+
+[movement]
+movementType: LAND
+moveSpeed: 0
+moveAccelerationSpeed: 0
+moveDecelerationSpeed: 0
+
+maxTurnSpeed: 0
+turnAcceleration: 0
+
+[hiddenAction_remove]
+autoTrigger: if self.isEnergyFull()
+addResources: hp=-99999

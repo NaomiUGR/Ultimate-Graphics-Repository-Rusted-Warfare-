@@ -1,0 +1,47 @@
+[core]
+copyFrom: ROOT:Templates\Easy Text\ignore\baseCalc.ignore
+@global EZTX_maxChar: 10
+
+[template_EZTX_decal]
+layer: beforeUI
+xOffsetAbsolute: memory.EZTX_posX[${Nr}]
+yOffsetAbsolute: memory.EZTX_posY[${Nr}]
+isVisible: if memory.EZTX_visible[${Nr}]
+frame: memory.EZTX_char[${Nr}]
+image: ${EZTX_fontSheet}
+alwaysStartDirAtZero: true
+teamColors: true
+frame_width: ${EZTX_font_width}
+frame_height: ${EZTX_font_height}
+imageScale: memory.EZTX_fontSize
+
+[decal_000]
+@copyFromSection: template_EZTX_decal
+@define Nr: 000
+[decal_001]
+@copyFromSection: template_EZTX_decal
+@define Nr: 001
+[decal_002]
+@copyFromSection: template_EZTX_decal
+@define Nr: 002
+[decal_003]
+@copyFromSection: template_EZTX_decal
+@define Nr: 003
+[decal_004]
+@copyFromSection: template_EZTX_decal
+@define Nr: 004
+[decal_005]
+@copyFromSection: template_EZTX_decal
+@define Nr: 005
+[decal_006]
+@copyFromSection: template_EZTX_decal
+@define Nr: 006
+[decal_007]
+@copyFromSection: template_EZTX_decal
+@define Nr: 007
+[decal_008]
+@copyFromSection: template_EZTX_decal
+@define Nr: 008
+[decal_009]
+@copyFromSection: template_EZTX_decal
+@define Nr: 009

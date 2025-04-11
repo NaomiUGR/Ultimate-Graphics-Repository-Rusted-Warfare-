@@ -1,0 +1,305 @@
+[core]
+@global EZTX_font_width: 68
+@global EZTX_font_height: 71
+@global EZTX_fontSheet: ROOT:Templates\Easy Text\fontSet\russel\russel.png
+@global EZTX_spaceWidth: 30
+
+[hiddenAction_EZTX_0]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 32
+[hiddenAction_EZTX_1]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 14
+[hiddenAction_EZTX_2]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_3]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 32
+[hiddenAction_EZTX_4]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 31
+[hiddenAction_EZTX_5]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_6]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 34
+[hiddenAction_EZTX_7]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_8]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 32
+[hiddenAction_EZTX_9]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 32
+[hiddenAction_EZTX_A]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 34
+[hiddenAction_EZTX_B]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 35
+[hiddenAction_EZTX_C]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 36
+[hiddenAction_EZTX_D]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 35
+[hiddenAction_EZTX_E]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 32
+[hiddenAction_EZTX_F]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_G]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 36
+[hiddenAction_EZTX_H]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 31
+[hiddenAction_EZTX_I]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 7
+[hiddenAction_EZTX_J]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 30
+[hiddenAction_EZTX_K]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 35
+[hiddenAction_EZTX_L]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 27
+[hiddenAction_EZTX_M]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 45
+[hiddenAction_EZTX_N]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 34
+[hiddenAction_EZTX_O]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 36
+[hiddenAction_EZTX_P]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_Q]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 38
+[hiddenAction_EZTX_R]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 35
+[hiddenAction_EZTX_S]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 43
+[hiddenAction_EZTX_T]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 40
+[hiddenAction_EZTX_U]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 40
+[hiddenAction_EZTX_V]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 37
+[hiddenAction_EZTX_W]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 55
+[hiddenAction_EZTX_X]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 38
+[hiddenAction_EZTX_Y]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 38
+[hiddenAction_EZTX_Z]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 45
+[hiddenAction_EZTX_Æ]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 58
+[hiddenAction_EZTX_Ø]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 36
+[hiddenAction_EZTX_Å]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 34
+[hiddenAction_EZTX_comma]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 5
+[hiddenAction_EZTX_period]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 5
+[hiddenAction_EZTX_dash]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 14
+[hiddenAction_EZTX_underscore]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 30
+[hiddenAction_EZTX_apostrophe]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 5
+[hiddenAction_EZTX_quote]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 14
+[hiddenAction_EZTX_exclamation]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 7
+[hiddenAction_EZTX_question]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 32
+[hiddenAction_EZTX_percent]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 43
+[hiddenAction_EZTX_ampersand]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 40
+[hiddenAction_EZTX_parenthesisStart]
+@copyFromSection: template_EZTX_chooseChar
+# Need to fix later
+@define width: 8
+[hiddenAction_EZTX_parenthesisEnd]
+@copyFromSection: template_EZTX_chooseChar
+# Need to fix later
+@define width: 8
+[hiddenAction_EZTX_slash]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 19
+[hiddenAction_EZTX_backslash]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 19
+[hiddenAction_EZTX_equal]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_lessThan]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_greaterThan]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_dollar]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 35
+[hiddenAction_EZTX_asterisk]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 22
+[hiddenAction_EZTX_plus]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_semicolon]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 5
+[hiddenAction_EZTX_colon]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 5
+[hiddenAction_EZTX_squareBracketStart]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 16
+[hiddenAction_EZTX_squareBracketEnd]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 16
+[hiddenAction_EZTX_at]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 44
+[hiddenAction_EZTX_curlyBracketStart]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 12
+[hiddenAction_EZTX_curlyBracketEnd]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 12
+[hiddenAction_EZTX_Б]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_В]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_Г]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 29
+[hiddenAction_EZTX_Д]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 44
+[hiddenAction_EZTX_Ж]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 66
+[hiddenAction_EZTX_З]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_К]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 38
+[hiddenAction_EZTX_Л]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 39
+[hiddenAction_EZTX_М]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 43
+[hiddenAction_EZTX_Н]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 36
+[hiddenAction_EZTX_П]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 36
+[hiddenAction_EZTX_Р]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 30
+[hiddenAction_EZTX_С]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 38
+[hiddenAction_EZTX_Т]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 40
+[hiddenAction_EZTX_Ф]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 48
+[hiddenAction_EZTX_Х]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 40
+[hiddenAction_EZTX_Ц]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 41
+[hiddenAction_EZTX_Ч]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 32
+[hiddenAction_EZTX_Ш]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 56
+[hiddenAction_EZTX_Щ]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 61
+[hiddenAction_EZTX_А]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 43
+[hiddenAction_EZTX_Е]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 30
+[hiddenAction_EZTX_Ё]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_И]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 40
+[hiddenAction_EZTX_О]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 43
+[hiddenAction_EZTX_У]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 44
+[hiddenAction_EZTX_Ы]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 41
+[hiddenAction_EZTX_Э]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 38
+[hiddenAction_EZTX_Ю]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 59
+[hiddenAction_EZTX_Я]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 34
+[hiddenAction_EZTX_Й]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 35
+[hiddenAction_EZTX_Ь]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 33
+[hiddenAction_EZTX_Ъ]
+@copyFromSection: template_EZTX_chooseChar
+@define width: 47
